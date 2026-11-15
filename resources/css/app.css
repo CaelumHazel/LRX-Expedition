@@ -1,0 +1,169 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Segoe UI Mono', Consolas, monospace;
+
+    --color-mocha-base: #11111B;
+    --color-mocha-mantle: #181825;
+    --color-mocha-surface: #1E1E2E;
+    --color-mocha-overlay: #313244;
+    --color-mocha-border: #45475A;
+
+
+    --color-mocha-text: #CDD6F4;
+    --color-mocha-subtext: #A6ADC8;
+    --color-mocha-muted: #6C7086;
+
+    --color-lrx-purple: #CBA6F7;
+    --color-lrx-cyan: #89DCEB;
+    --color-lrx-green: #A6E3A1;
+    --color-lrx-yellow: #F9E2AF;
+    --color-lrx-red: #F38BA8;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+html {
+    color-scheme: dark;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-mocha-base);
+}
+
+/* Subtle futuristic background */
+/* Stronger futuristic background */
+.lrx-background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at 12% 5%,
+            rgba(203, 166, 247, 0.19),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 88% 25%,
+            rgba(137, 220, 235, 0.15),
+            transparent 36%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(203, 166, 247, 0.10),
+            transparent 42%
+        ),
+        var(--color-mocha-base);
+}
+
+/* More visible grid ornament */
+.lrx-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(205, 214, 244, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(205, 214, 244, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 38px 38px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 95%
+    );
+}
+
+/* Active navigation */
+.lrx-nav-active {
+    color: var(--color-lrx-cyan);
+    background: linear-gradient(
+        100deg,
+        rgba(137, 220, 235, 0.14),
+        rgba(203, 166, 247, 0.07)
+    );
+    border: 1px solid rgba(137, 220, 235, 0.16);
+    box-shadow: inset 2px 0 0 var(--color-lrx-cyan);
+}
+
+/* Gradient primary button */
+.lrx-button-primary {
+    color: var(--color-mocha-base);
+    background: linear-gradient(
+        110deg,
+        var(--color-lrx-cyan),
+        var(--color-lrx-purple)
+    );
+    transition: all 180ms ease;
+}
+
+.lrx-button-primary:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+/* Subtle surface gradient */
+.lrx-surface {
+    background: linear-gradient(
+        145deg,
+        rgba(49, 50, 68, 0.55),
+        rgba(30, 30, 46, 0.92) 55%,
+        rgba(24, 24, 37, 0.96)
+    );
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-mocha-mantle);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-mocha-border);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-mocha-muted);
+}
+
+@media print {
+    body * {
+        visibility: hidden !important;
+    }
+
+    #shipment-barcode,
+    #shipment-barcode * {
+        visibility: visible !important;
+    }
+
+    #shipment-barcode {
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: 100%;
+        border: 0 !important;
+        background: white !important;
+        color: black !important;
+    }
+}
